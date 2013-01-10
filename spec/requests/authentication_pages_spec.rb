@@ -24,6 +24,11 @@ describe "Authentication" do
       it { should have_page_title("Sign in") }
       it { should have_error_message("Invalid") }
       
+      it { should_not have_link('Users', href: users_path) }
+      it { should_not have_link('Profile') }
+      it { should_not have_link('Settings') }
+      it { should_not have_link('Sign out', href: signout_path) }
+      
       describe "after visiting another page" do
         before { click_link "Home" }
         it { should_not have_error_message("Invalid") }
@@ -39,6 +44,7 @@ describe "Authentication" do
       
       it { should have_link('Users', href: users_path) }
       it { should have_link('Profile', href: user_path(user)) }
+      it { should have_link('Settings', href: edit_user_path(user)) }
       it { should have_link('Sign out', href: signout_path) }
       
       it { should_not have_link('Sign in', href: signin_path) }
@@ -66,6 +72,17 @@ describe "Authentication" do
         describe "after signing in" do
           it "should render the desired protected page" do
             page.should have_page_title("Edit user")
+          end
+        end
+        
+        describe "when signing in again" do
+          before do
+            delete signout_path
+            sign_in user
+          end
+          
+          it "should render the default (profile) page" do
+            page.should have_page_title(user.name)
           end
         end
       end
