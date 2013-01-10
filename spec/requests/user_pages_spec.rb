@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+ 
 describe "UserPages" do
 
   subject { page }
@@ -61,5 +61,49 @@ describe "UserPages" do
     
     it { should have_page_heading(user.name) }
     it { should have_page_title(user.name) }
+  end
+  
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      sign_in user
+      visit edit_user_path(user)
+    end
+    
+    #before { visit edit_user_path(user) }
+    let(:submit) { "Save changes" }
+    
+    describe "page" do
+      it { should have_page_heading("Update your profile") }
+      it { should have_page_title("Edit user") }
+      it { should have_link('change', href: 'http://gravatar.com/emails') }
+    
+      describe "with invalid information" do
+        before { click_button submit }
+        
+        it { should have_content('error') }
+      end
+    end
+    
+    describe "with valid information" do
+      let(:new_name)  { "New Name" }
+      let(:new_email) { "new@example.com" }
+      
+      before do
+        fill_in "Name",             with: new_name
+        fill_in "Email",            with: new_email
+        fill_in "Password",         with: user.password
+        fill_in "Confirm Password", with: user.password
+        click_button submit
+      end
+      
+      it { should have_page_title(new_name) }
+      it { should have_success_message("") }
+      it { should have_link('Sign out', href: signout_path) }
+      
+      specify { user.reload.name.should == new_name }
+      specify { user.reload.email.should == new_email }
+    end
+    
   end
 end
