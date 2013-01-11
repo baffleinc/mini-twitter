@@ -170,6 +170,15 @@ input {
   @extend .error;
  }
  
+ .letter-count{
+   float: right;
+   color: #aaa;
+ }
+ 
+ .letter-count.error{
+   color: #f00;
+ }
+ 
  /* users index */
  
  .users {
