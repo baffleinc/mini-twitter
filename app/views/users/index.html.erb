@@ -1,5 +1,7 @@
-<% provide(:title, "All users") %>
-<h1>All users</h1>
+<% provide(:title, @title) %>
+<h1><%= @heading %></h1>
+
+<%= render 'shared/search_form' %>
 
 <%= will_paginate %>
 

@@ -44,7 +44,14 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page])
+    if params[:search]
+      @users = User.search(params[:search]).paginate(page: params[:page])
+      @title = "Search Users"
+      @heading = "Search results for " + params[:search]
+    else
+      @users = User.paginate(page: params[:page])
+      @heading = @title = "All users"
+    end
   end
   
   def following

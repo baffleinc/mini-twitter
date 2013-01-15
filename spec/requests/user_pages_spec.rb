@@ -98,6 +98,26 @@ describe "UserPages" do
     end
   end
   
+  describe "Search page" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:other_user) { FactoryGirl.create(:user) }
+    before do
+      sign_in user
+      visit users_path
+    end
+    
+    describe "be able to search for user" do
+      before do
+        fill_in "search", with: other_user.name
+        click_button "Search"
+      end
+      it { should have_page_title(full_title('Search Users')) }
+      it { should have_page_heading('Search results for ' + other_user.name) }
+      it { should have_selector('li', text: other_user.name) }
+      
+    end
+  end
+  
   describe "profile page" do
   
     let(:user) { FactoryGirl.create(:user) }
