@@ -1,0 +1,5 @@
+<%= form_for current_user.likes.build(micropost_id: micropost.id), :remote => true do |f| %>
+	<%= f.hidden_field :micropost_id %>
+	<%= f.hidden_field :user_id %>
+	<%= f.submit "Like", class: "btn btn-primary btn-small" %>
+<% end %>

@@ -17,13 +17,12 @@
   <div class="span8">
     <blockquote>
       <p><%= @micropost.content %></p>
-      <small>Posted <%= time_ago_in_words(@micropost.created_at) %></small>
+      <small>
+        Posted <%= time_ago_in_words(@micropost.created_at) %> &bull; 
+        <span id="like_count_<%= @micropost.id %>"><%= pluralize(@micropost.likes.count, 'like') %></span>
+      </small>
     </blockquote>
+    <%= render 'like_form', micropost: @micropost %>
     
-    <ul class="actions inline">
-      <%= form_tag like_micropost_path(@micropost) do %>
-      
-      <% end %>
-    </ul>
   </div>
 </div>

@@ -11,6 +11,40 @@ describe "MicropostPages" do
   describe "single micropost page" do
     before { visit micropost_path(micropost) }
     it { should have_selector('p', text: micropost.content) }
+    
+    describe "like/unlike buttons" do
+      it { should have_selector('input', value: 'Like') }
+      let(:like) { "Like" } 
+      
+      describe "liking a micropost" do
+        it "should increment the posts's likes" do
+          expect { click_button like }.to change(micropost.likes, :count).by(1)
+        end
+      end
+      
+      describe "toggle the button" do
+        before { click_button like }
+        it { should have_selector('input', value: "Unlike") }
+      end
+      
+      describe "unliking a micropost" do
+        before do
+          user.like!(micropost)
+          visit micropost_path(micropost)
+        end
+        
+        let(:unlike) { "Unlike" }
+        
+        it "should decrement the posts's likes" do
+          expect { click_button unlike }.to change(micropost.likes, :count).by(-1)
+        end
+        
+        describe "toggle the button" do
+          before { click_button unlike }
+          it { should have_selector('input', value: "Like") }
+        end
+      end
+    end
   end
   
   describe "micropost creation" do

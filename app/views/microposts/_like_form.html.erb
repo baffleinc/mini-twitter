@@ -1,0 +1,7 @@
+<span id="like_form_<%= micropost.id %>">
+<% if current_user.likes?(micropost) %>
+  <%= render 'microposts/unlike', micropost: micropost %>
+<% else %>
+  <%= render 'microposts/like', micropost: micropost %>
+<% end %>
+</span>

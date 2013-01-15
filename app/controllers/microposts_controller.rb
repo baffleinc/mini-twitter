@@ -10,10 +10,6 @@ class MicropostsController < ApplicationController
     @user      = @micropost.user
   end
   
-  def like
-    
-  end
-  
   def create
     @micropost = current_user.microposts.build(params[:micropost])
     if @micropost.save
