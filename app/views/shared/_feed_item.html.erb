@@ -6,6 +6,7 @@
   <span class="content"><%= feed_item.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-  </span>
+  </span> &bull;
+  <%= link_to "Permalink", feed_item %>
   <%= render 'shared/delete_micropost', micropost: feed_item %>
 </li>

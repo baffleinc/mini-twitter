@@ -5,7 +5,13 @@ describe "MicropostPages" do
   subject { page }
   
   let(:user) { FactoryGirl.create(:user) }
+  let(:micropost) { FactoryGirl.create(:micropost, user: user) }
   before { sign_in user }
+  
+  describe "single micropost page" do
+    before { visit micropost_path(micropost) }
+    it { should have_selector('p', text: micropost.content) }
+  end
   
   describe "micropost creation" do
     before { visit root_path }

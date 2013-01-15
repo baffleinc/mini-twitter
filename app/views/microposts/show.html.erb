@@ -1,0 +1,29 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+    <section>
+      <%= link_to "View profile", user_path(@user), class: "btn btn-medium" %>
+    </section>
+  </aside>
+  <div class="span8">
+    <blockquote>
+      <p><%= @micropost.content %></p>
+      <small>Posted <%= time_ago_in_words(@micropost.created_at) %></small>
+    </blockquote>
+    
+    <ul class="actions inline">
+      <%= form_tag like_micropost_path(@micropost) do %>
+      
+      <% end %>
+    </ul>
+  </div>
+</div>
