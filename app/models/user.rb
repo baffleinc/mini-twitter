@@ -32,6 +32,14 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      find(:all)
+    end
+  end
+  
   def feed
     Micropost.from_users_followed_by(self)
   end
