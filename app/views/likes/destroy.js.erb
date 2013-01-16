@@ -1,2 +1,2 @@
-$("#like_form_<%= @micropost.id %>").html("<%= escape_javascript(render('microposts/like')) %>")
+$("#like_form_<%= @micropost.id %>").html("<%= escape_javascript(render('microposts/like', micropost: @micropost)) %>")
 $("#like_count_<%= @micropost.id %>").html('<%= pluralize(@micropost.likes.count, 'like') %>')
