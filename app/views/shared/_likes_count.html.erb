@@ -1,0 +1,7 @@
+<span class="likes" id="like_count_<%= micropost.id.to_s %>">
+  <% if micropost.likes.any? %>
+    <%= link_to pluralize(micropost.likes.count, 'like'), likes_micropost_path(micropost), title: pluralize(@micropost.likes.count, 'person') + " liked this post", class: "fancybox fancybox.ajax", id: "like_count_" + micropost.id.to_s %>
+  <% else %>
+      No likes
+  <% end %>
+</span>

@@ -1,8 +1,8 @@
 class LikesController < ApplicationController
   before_filter :signed_in_user
-  
+
   respond_to :html, :js
-  
+
   def create
     @like = Like.create(params[:like])
     @micropost = @like.micropost

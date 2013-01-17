@@ -1,0 +1,7 @@
+<div class="likes">
+  <ul>
+    <% @micropost.likes.each do |like| %>
+      <li><%= link_to like.user.name, user_path(like.user) %></li>
+    <% end %>
+  </ul>
+</div>

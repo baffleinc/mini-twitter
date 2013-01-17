@@ -1,12 +1,13 @@
 @import "bootstrap";
+@import "fancybox";
 
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -30,7 +31,7 @@ textarea {
 
 .center {
   text-align: center;
-  
+
   h1 {
     margin-bottom: 10px;
   }
@@ -75,7 +76,7 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-  
+
   &:hover {
     color: #fff;
     text-decoration: none;
@@ -90,23 +91,23 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
-  
+
   a {
     color: #555;
-    
-    &:hover { 
+
+    &:hover {
       color: #222;
     }
   }
-  
+
   small {
     float: left;
   }
-  
+
   ul {
     float: right;
     list-style: none;
-    
+
     li {
       float: left;
       margin-left: 10px;
@@ -199,27 +200,27 @@ input {
   @extend .control-group;
   @extend .error;
  }
- 
+
  .letter-count{
    float: right;
    color: #aaa;
  }
- 
+
  .letter-count.error{
    color: #f00;
  }
- 
+
  /* users index */
- 
+
  .form-search{
    float: right;
    margin-top: 25px;
  }
- 
+
  .pagination{
    float: left;
  }
- 
+
  .users {
    clear: both;
    list-style: none;
@@ -233,18 +234,18 @@ input {
      }
    }
  }
- 
+
  /* microposts */
- 
+
  .microposts {
    list-style: none;
    margin: 10px 0 0 0;
- 
+
    li {
      padding: 10px 30px 10px 0;
      border-top: 1px solid #e8e8e8;
      position: relative;
-     
+
      small{
        input{
          clear: none;
@@ -253,7 +254,7 @@ input {
          line-height: inherit;
        }
      }
-     
+
      .btn{
        position: absolute;
        right: 0;
@@ -277,6 +278,36 @@ input {
      height: 100px;
      margin-bottom: 5px;
    }
+ }
+
+ /* Likes */
+
+ .fancybox-outer{
+  border-radius: 5px;
+ }
+
+ .likes{
+  width: 315px;
+  height: 200px;
+
+  ul{
+    list-style: none;
+    margin: 0;
+
+    li{
+
+      a{
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+
+        &:hover{
+          background: #f8f8f8;
+          text-decoration: none;
+        }
+      }
+    }
+  }
  }
 
 /* miscellaneous */

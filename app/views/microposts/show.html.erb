@@ -18,11 +18,11 @@
     <blockquote>
       <p><%= @micropost.content %></p>
       <small>
-        Posted <%= time_ago_in_words(@micropost.created_at) %> &bull; 
-        <span id="like_count_<%= @micropost.id %>"><%= pluralize(@micropost.likes.count, 'like') %></span>
+        Posted <%= time_ago_in_words(@micropost.created_at) %> ago &bull;
+        <%= render 'shared/likes_count', micropost: @micropost %>
       </small>
     </blockquote>
     <%= render 'like_form', micropost: @micropost %>
-    
+
   </div>
 </div>

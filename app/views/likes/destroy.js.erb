@@ -1,2 +1,12 @@
+if(<%= @micropost.likes.any? %>)
+{
+  $("#like_count_<%= @micropost.id %>")
+    .html('<%= link_to pluralize(@micropost.likes.count, 'like'), likes_micropost_path(@micropost), title: pluralize(@micropost.likes.count, 'person') + " liked this post", class: "fancybox fancybox.ajax" %>')
+}
+else
+{
+  $("#like_count_<%= @micropost.id %>")
+    .html('no likes')
+}
+
 $("#like_form_<%= @micropost.id %>").html("<%= escape_javascript(render('microposts/like', micropost: @micropost)) %>")
-$("#like_count_<%= @micropost.id %>").html('<%= pluralize(@micropost.likes.count, 'like') %>')
