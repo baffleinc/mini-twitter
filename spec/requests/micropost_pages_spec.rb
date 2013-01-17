@@ -20,6 +20,14 @@ describe "MicropostPages" do
         it "should increment the posts's likes" do
           expect { click_button like }.to change(micropost.likes, :count).by(1)
         end
+
+        describe "should show a list of users that liked the post" do
+          before do
+            click_button like
+            click_link "1 like"
+          end
+          it { should have_selector('li', text: user.name) }
+        end
       end
 
       describe "toggle the button" do
@@ -43,15 +51,6 @@ describe "MicropostPages" do
           before { click_button unlike }
           it { should have_selector('input', value: "Like") }
         end
-      end
-
-      describe "should show a list of users that liked the post" do
-        before do
-          click_button like
-          click_link "likes"
-        end
-
-        it { should have_selector('li', text: user.name) }
       end
     end
   end
